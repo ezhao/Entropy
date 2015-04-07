@@ -1,8 +1,173 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".EntropyActivity">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EntropyActivity">
+
+    <RelativeLayout
+        android:id="@+id/rlRandomNumber"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/rlRandomSettings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tvRandomNumber"
+            android:text="34"
+            android:textSize="72sp"
+            android:textColor="@color/material_deep_teal_500"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlRandomSettings"
+        android:layout_above="@+id/rlRandomHistory"
+        android:layout_width="match_parent"
+        android:layout_height="96dp">
+
+        <TextView
+            android:id="@+id/tvStartRange"
+            android:text="1"
+            android:textSize="36sp"
+            android:textColor="@color/material_deep_teal_500"
+            android:layout_marginLeft="24dp"
+            android:layout_marginStart="24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:id="@+id/tvRangeTo"
+            android:text="to"
+            android:textSize="36sp"
+            android:layout_marginRight="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/tvStartRange"
+            android:layout_toRightOf="@id/tvStartRange"
+            android:layout_toEndOf="@id/tvStartRange" />
+
+        <TextView
+            android:id="@+id/tvEndRange"
+            android:text="100"
+            android:textSize="36sp"
+            android:textColor="@color/material_deep_teal_500"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/tvStartRange"
+            android:layout_toRightOf="@+id/tvRangeTo"
+            android:layout_toEndOf="@+id/tvRangeTo" />
+
+        <TextView
+            android:text="History"
+            android:id="@+id/tvHistoryLabel"
+            android:textSize="20sp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_alignTop="@+id/cbHistorySetting"
+            android:layout_toLeftOf="@+id/cbHistorySetting"
+            android:layout_toStartOf="@+id/cbHistorySetting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <CheckBox
+            android:id="@+id/cbHistorySetting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/tvStartRange"
+            android:layout_marginTop="-10dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true" />
+
+        <TextView
+            android:text="Repeat"
+            android:id="@+id/tvRepeatLabel"
+            android:textSize="20sp"
+            android:alpha="0.5"
+            android:layout_alignTop="@+id/cbRepeatSetting"
+            android:layout_alignStart="@id/tvHistoryLabel"
+            android:layout_alignLeft="@id/tvHistoryLabel"
+            android:layout_marginTop="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <CheckBox
+            android:id="@+id/cbRepeatSetting"
+            android:enabled="false"
+            android:checked="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cbHistorySetting"
+            android:layout_alignRight="@id/cbHistorySetting"
+            android:layout_alignEnd="@id/cbHistorySetting" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlRandomHistory"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/rlRandomHistoryWrapper"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvHistorySectionLabel"
+                android:text="History"
+                android:textSize="24sp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tvHistorySectionReset"
+                android:text="Reset"
+                android:textSize="16sp"
+                android:textColor="@color/material_deep_teal_500"
+                android:textAllCaps="true"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="2dp"
+                android:layout_toRightOf="@id/tvHistorySectionLabel"
+                android:layout_toEndOf="@id/tvHistorySectionLabel"
+                android:layout_alignBottom="@id/tvHistorySectionLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <HorizontalScrollView
+                android:id="@+id/hsvHistoryList"
+                android:scrollbarSize="2dp"
+                android:layout_below="@id/tvHistorySectionLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/llHistoryList"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </HorizontalScrollView>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
 
 </RelativeLayout>
